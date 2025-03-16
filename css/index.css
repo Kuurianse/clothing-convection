@@ -1,0 +1,112 @@
+:root {
+  --primary-color: #2663eb; /* biru */
+  --secondary-color: #111827; /* footer */
+  --background-color: #f4f5f5; /* putih */
+  --text-color: #3e4957;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  /* font-family: 'Poppins', sans-serif; */
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+/* Header ============================================================= */
+
+.header {
+  /* border: 1px solid black; */
+  padding: 1rem 8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--background-color);
+}
+.logo {
+  /* border: 1px solid black; */
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+.list {
+  /* border: 1px solid black; */
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+.list li {
+  /* border: 1px solid black; */
+  padding: 0 1rem;
+  font-size: 1.125rem;
+}
+.list-item a{
+  text-decoration: none;
+  color: var(--text-color);
+}
+.contact {
+  /* border: 1px solid black; */
+  font-size: 1.125rem;
+  font-weight: 700;
+  padding: 0.8rem 1.7rem;
+  border-radius: 2rem;
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* Hero ============================================================= */
+
+.hero-section {
+  /* border: 1px solid black; */
+  background: 
+  linear-gradient(135deg, rgba(0, 0, 142, 0.75) 0%, rgba(97, 97, 97, 0.75) 100%), 
+  url("../img/konveksi.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  height: 100vh;
+  padding: 0 9.375em;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+.hero-container {
+  /* border: 1px solid black; */
+  width: 880px;
+}
+.hero-container h1 {
+  font-size: 4rem;
+  font-weight: 700;
+}
+.hero-container p {
+  font-size: 1.625rem;
+  font-weight: 500;
+  line-height: 2rem;
+  margin: 2.375rem 0;
+}
+.btn {
+  padding: 1.3rem 2rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-spacing: 0.1rem;
+  border-radius: 2rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  cursor: pointer;
+}
