@@ -116,7 +116,95 @@ body {
 
 /* Responsive ============================== */
 
-/* Tambahkan ini di luar media query (untuk styling dasar hamburger) */
+/* Tambahkan kode ini ke file CSS Anda */
+
+/* Style dasar dropdown */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animasi untuk navbar saat active */
+.navbar.active {
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+/* Animasi untuk setiap item dalam list */
+.navbar.active .list .list-item {
+  opacity: 0;
+  animation: slideIn 0.4s ease-in-out forwards;
+}
+
+/* Animasi dengan delay berbeda untuk setiap item menu */
+.navbar.active .list .list-item:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.navbar.active .list .list-item:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.navbar.active .list .list-item:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.navbar.active .list .list-item:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+/* Animasi untuk tombol kontak */
+.contact.active {
+  animation: fadeIn 0.5s ease-in-out forwards;
+  animation-delay: 0.5s;
+  opacity: 0;
+}
+
+/* Tambahkan efek hover pada item menu */
+.list-item a {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.list-item a:hover {
+  color: var(--primary-color);
+}
+
+.list-item a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.list-item a:hover::after {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+
+}
+
 .hamburger {
   display: none; /* Sembunyikan di desktop */
   cursor: pointer;
@@ -133,6 +221,7 @@ body {
 
 @media (max-width: 768px) {
   /* Header ============================== */
+  
   .header {
     position: relative;
     padding: 1rem;
