@@ -50,7 +50,7 @@ body {
   padding: 0 1rem;
   font-size: 1.125rem;
 }
-.list-item a{
+.list-item a {
   text-decoration: none;
   color: var(--text-color);
 }
@@ -72,9 +72,12 @@ body {
 
 .hero-section {
   /* border: 1px solid black; */
-  background: 
-  linear-gradient(135deg, rgba(0, 0, 142, 0.75) 0%, rgba(97, 97, 97, 0.75) 100%), 
-  url("../img/konveksi.jpg");
+  background: linear-gradient(
+      135deg,
+      rgba(0, 0, 142, 0.75) 0%,
+      rgba(97, 97, 97, 0.75) 100%
+    ),
+    url("../img/konveksi.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -109,4 +112,140 @@ body {
   color: white;
   border: none;
   cursor: pointer;
+}
+
+/* Responsive ============================== */
+
+/* Tambahkan ini di luar media query (untuk styling dasar hamburger) */
+.hamburger {
+  display: none; /* Sembunyikan di desktop */
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.bar {
+  width: 25px;
+  height: 3px;
+  background-color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  /* Header ============================== */
+  .header {
+    position: relative;
+    padding: 1rem;
+    flex-direction: row; /* Logo & hamburger sejajar */
+    align-items: center;
+    flex-wrap: wrap; /* Memungkinkan menu turun ke baris baru */
+  }
+
+  /* Hamburger Menu */
+  .hamburger {
+    display: flex; /* Tampilkan hamburger di mobile */
+    margin-left: auto; /* Posisikan di sebelah kanan */
+  }
+
+  /* Sembunyikan navbar dan tombol kontak default */
+  .navbar,
+  .contact {
+    display: none;
+  }
+
+  /* Style saat menu aktif */
+  .navbar.active {
+    display: block;
+    width: 100%;
+    order: 2; /* Posisi di bawah header */
+    margin-top: 1rem;
+  }
+
+  .contact.active {
+    display: block;
+    width: 100%;
+    order: 3;
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  /* Animasi Hamburger */
+  .hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  /* Penyesuaian menu */
+  .list {
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+  }
+
+  .list li {
+    padding: 0.5rem 0 !important;
+    width: 100%;
+  }
+
+  .list li a {
+    display: block;
+    padding: 0.5rem 1rem;
+  }
+
+  /* Hero Section ============================== */
+  .hero-section {
+    padding: 0 1rem;
+  }
+
+  .hero-container h1 {
+    font-size: 2rem;
+  }
+
+  .hero-container p {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    margin: 1rem 0;
+  }
+
+  .btn {
+    padding: 0.8rem 1.2rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 1.25rem;
+  }
+
+  .list li {
+    font-size: 0.9rem;
+  }
+
+  .contact {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .hero-container h1 {
+    font-size: 1.75rem;
+  }
+
+  .hero-container p {
+    font-size: 0.9rem;
+    line-height: 1.25rem;
+    margin: 0.75rem 0;
+  }
+
+  .btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+  }
 }
