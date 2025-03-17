@@ -1,7 +1,8 @@
 :root {
   --primary-color: #2663eb; /* biru */
   --secondary-color: #111827; /* footer */
-  --background-color: #f4f5f5; /* putih */
+  --background-color: #F9FAFC; /* putih */
+  --background-header: #f4f5f5;
   --text-color: #3e4957;
 }
 * {
@@ -28,7 +29,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--background-color);
+  background-color: var(--background-header);
 }
 .logo {
   /* border: 1px solid black; */
@@ -113,6 +114,153 @@ body {
   border: none;
   cursor: pointer;
 }
+
+/* Font ============================================================= */
+
+.judul {
+  font-size: 3rem;
+  line-height: 62px;
+  font-weight: 700;
+  color: black;
+}
+
+.deskripsi{
+  font-size: 1.3125rem;
+  line-height: 32px;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.subjudul{
+  font-size: 1.75rem;
+  line-height: 62px;
+  font-weight: 600;
+  color: black;
+}
+.img{
+  /* border: 1px solid black; */
+  width: 61px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+/* Tentang ============================================================= */
+
+.tentang-section{
+  /* border: 1px solid black; */
+  background-color: var(--background-color);
+  /* height: 600px; */
+  padding: 6.125em 0;
+  display: flex;
+  /* flex-wrap: wrap; */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.tentang-header{
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 42%;
+  text-align: center;
+  /* height: 177px; */
+}
+.tentang-header .judul{
+  margin-bottom: 1rem;
+}
+
+.tentang-container{
+  /* border: 1px solid black; */
+  /* width: 1641px; */
+  width: 85.46%;
+  margin-top: 3em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 50px;
+}
+
+.tentang-card {
+  /* border: 1px solid black; */
+  flex-grow: 1;
+  min-width: 300px;
+  max-width: 500px;
+}
+.tentang-card-content{
+  text-align: center;
+}
+
+/* Layanan ============================================================= */
+
+.layanan-section{
+  /* border: 1px solid black; */
+  /* height: 645px; */
+  padding: 100px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.layanan-section .judul{
+  /* border: 1px solid black; */
+  text-align: center;
+  margin-bottom: 83px;
+}
+
+.layanan-container{
+  /* border: 1px solid black; */
+  /* width: 85.7%; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 38px;
+}
+
+.layanan-card{
+  /* border: 1px solid black; */
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+  border-radius: 1em;
+  padding: 1.5625em;
+  flex-grow: 1;
+  min-width: 300px;
+  max-width: 400px;
+}
+.layanan-card .img{
+  margin: 0;
+}
+.layanan-card-content .subjudul{
+  line-height: 40px;
+  margin: 11px 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Responsive ============================== */
 
