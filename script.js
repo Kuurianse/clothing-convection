@@ -1,3 +1,5 @@
+AOS.init();
+
 // JavaScript untuk Hamburger Menu
 const hamburger = document.querySelector(".hamburger");
 const navbar = document.querySelector(".navbar");
