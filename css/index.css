@@ -196,6 +196,8 @@ body {
   flex-grow: 1;
   min-width: 300px;
   max-width: 470px;
+  padding: 20px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 .tentang-card-content {
   text-align: center;
@@ -220,6 +222,7 @@ body {
 .layanan-container {
   /* border: 1px solid black; */
   /* width: 85.7%; */
+  width: 100%;
   max-width: 1650px;
   display: flex;
   flex-wrap: wrap;
@@ -249,7 +252,7 @@ body {
 .gallery {
   /* border: 1px solid red; */
   background-color: var(--background-color);
-  padding: 105px 0 31px 0;
+  padding: 105px 0 105px 0;
   /* height: 865px; */
   display: flex;
   flex-direction: column;
@@ -378,6 +381,103 @@ body {
   transform: scale(1.2);
 }
 
+/* Siap ============================================================= */
+
+.siap{
+  /* border: 1px solid red; */
+  /* height: 460px; */
+  padding: 90px 30px;
+  background-color: var(--primary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.siap-container{
+  /* border: 1px solid white; */
+  width: 100%;
+  max-width: 1111px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 66px;
+}
+.gmaps{
+  /* width: 381.77px; */
+  /* flex-grow: 1; */
+  width: 100%;
+  min-width: 300px;
+  max-width: 382px;
+  height: 290px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.gmaps iframe{
+  width: 100%;
+  height: 100%;
+  border: none; /* Menghilangkan border iframe */
+}
+.gmaps img{
+  /* height: 100%; */
+}
+.siap-content{
+  /* border: 1px solid red; */
+  flex: 1;
+  min-width: 300px;
+  max-width: 663px;
+  /* flex-grow: 1;
+  max-width: 500px; */
+}
+.siap-content .judul{
+  color: white;
+  font-size: 3.0625rem;
+  font-weight: 700;
+  /* line-height: 25px; */
+}
+.siap-content .deskripsi{
+  color: white;
+  font-size: 1.6875rem;
+  font-weight: 500;
+  line-height: 35px;
+  margin: 45px 0;
+}
+.siap-content .contactNew{
+  font-weight: 700;
+  border-radius: 2rem;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+
+  background-color: white;
+  color: #3860E6;
+  padding: 1.2rem 1.7rem;
+  font-size: 1.5rem;
+  line-height: 35px;
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Responsive ============================== */
 
@@ -479,6 +579,53 @@ body {
 }
 
 @media (max-width: 768px) {
+
+  .judul, .layanan-section .judul, .h1-wrapper .judul{
+    font-size: 1.7rem;
+  }
+  .deskripsi {
+    font-size: 1.2rem;
+  }
+  .subjudul{
+    font-size: 1.3rem;
+  }
+
+  .tentang-section{
+    padding: 60px 20px;
+  }
+  .tentang-container{
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .layanan-section{
+    padding: 60px 20px;
+  }
+
+  .layanan-card-content .subjudul{
+    margin-top: 20px;
+  }
+
+  .gallery{
+    padding: 50px 0 50px 0;
+  }
+
+  .siap-content .judul{
+    font-size: 1.7rem;
+    line-height: 45px;
+  }
+  .siap-content .deskripsi{
+    font-size: 1.3rem;
+    margin: 20px 0;
+  }
+  .siap-content .contactNew{
+    font-size: 1.3rem;
+    padding: 0.5rem 1.5rem;
+  }
+  .img {
+    width: 40px;
+    height: 32px;
+  }
 
   /* Gallery Section ============================== */
 
