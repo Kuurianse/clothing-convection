@@ -24,152 +24,162 @@ document.addEventListener("click", (e) => {
 
 // Galeri Produk
 document.addEventListener('DOMContentLoaded', function() {
-  const galleryWrapper = document.getElementById('galleryWrapper');
-  const prevButton = document.getElementById('prevButton');
-  const nextButton = document.getElementById('nextButton');
-  const progressContainer = document.getElementById('progressContainer');
-  const galleryItems = document.querySelectorAll('.gallery-item');
-  
-  let itemWidth;
-  let currentIndex = 0;
-  const maxIndex = galleryItems.length - 1;
-  
-  // Create progress dots
-  galleryItems.forEach((_, index) => {
-      const dot = document.createElement('div');
-      dot.classList.add('progress-dot');
-      if (index === 0) dot.classList.add('active');
-      progressContainer.appendChild(dot);
-      
-      dot.addEventListener('click', () => {
-          goToSlide(index);
-      });
+    const galleryWrapper = document.getElementById('galleryWrapper');
+    const prevButton = document.getElementById('prevButton');
+    const nextButton = document.getElementById('nextButton');
+    const progressContainer = document.getElementById('progressContainer');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    
+    let itemWidth;
+    let currentIndex = 0;
+    const maxIndex = galleryItems.length - 1;
+    
+    // Variables for desktop view adjustments
+    let desktopStartIndex = 0; // Start from second image on desktop
+    let desktopEndOffset = 2; // Show until 2 images before the last one
+    let isDesktopView = false;
+    
+    // Create progress dots
+    galleryItems.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.classList.add('progress-dot');
+        if (index === 0) dot.classList.add('active');
+        progressContainer.appendChild(dot);
+        
+        dot.addEventListener('click', () => {
+            goToSlide(index);
+        });
+    });
+    
+    const progressDots = document.querySelectorAll('.progress-dot');
+    
+    // Function to calculate item width based on window size
+    function calculateItemWidth() {
+        const windowWidth = window.innerWidth;
+        if (windowWidth <= 480) {
+            return 250 + 16; // item width + margin for mobile
+        } else if (windowWidth <= 768) {
+            return 300 + 20; // item width + margin for tablet
+        } else {
+            return 524 + 30; // item width + margin for desktop
+        }
+    }
+    
+    // Function to check if we're in desktop view
+    function checkDesktopView() {
+        isDesktopView = window.innerWidth > 768;
+        
+        // If desktop and first load, start from second image
+        if (isDesktopView && currentIndex === 0) {
+            goToSlide(desktopStartIndex);
+        }
+    }
+    
+    // Initialize item width and view
+    itemWidth = calculateItemWidth();
+    checkDesktopView();
+    
+    // Update item width and view on window resize
+    window.addEventListener('resize', () => {
+        itemWidth = calculateItemWidth();
+        checkDesktopView();
+        goToSlide(currentIndex);
+    });
+    
+    function updateProgressDots() {
+        progressDots.forEach((dot, index) => {
+            if (index === currentIndex) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+    }
+    
+    function goToSlide(index) {
+        currentIndex = index;
+        const offset = -currentIndex * itemWidth;
+        galleryWrapper.style.transform = `translateX(${offset}px)`;
+        updateProgressDots();
+    }
+    
+    prevButton.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            goToSlide(currentIndex - 1);
+        } else {
+            // Optional: Loop back to the end but respect desktop limits
+            if (isDesktopView) {
+                goToSlide(maxIndex - desktopEndOffset);
+            } else {
+                goToSlide(maxIndex);
+            }
+        }
+    });
+    
+    nextButton.addEventListener('click', () => {
+        // For desktop view, stop at maxIndex - desktopEndOffset
+        const effectiveMaxIndex = isDesktopView ? maxIndex - desktopEndOffset : maxIndex;
+        
+        if (currentIndex < effectiveMaxIndex) {
+            goToSlide(currentIndex + 1);
+        } else {
+            // Loop back to beginning but respect desktop start position
+            if (isDesktopView) {
+                goToSlide(desktopStartIndex);
+            } else {
+                goToSlide(0);
+            }
+        }
+    });
+    
+    // Enable horizontal scrolling with mouse wheel
+    galleryWrapper.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        
+        // For desktop view, respect limits
+        const effectiveMaxIndex = isDesktopView ? maxIndex - desktopEndOffset : maxIndex;
+        
+        if (e.deltaY > 0) {
+            // Scroll right
+            if (currentIndex < effectiveMaxIndex) {
+                goToSlide(currentIndex + 1);
+            }
+        } else {
+            // Scroll left
+            if (currentIndex > (isDesktopView ? desktopStartIndex : 0)) {
+                goToSlide(currentIndex - 1);
+            }
+        }
+    });
+    
+    // Enable touch scrolling for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    galleryWrapper.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+    
+    galleryWrapper.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+    
+    function handleSwipe() {
+        // For desktop view, respect limits
+        const effectiveMaxIndex = isDesktopView ? maxIndex - desktopEndOffset : maxIndex;
+        const swipeThreshold = 50;
+        
+        if (touchEndX < touchStartX - swipeThreshold) {
+            // Swipe left, go next
+            if (currentIndex < effectiveMaxIndex) {
+                goToSlide(currentIndex + 1);
+            }
+        } else if (touchEndX > touchStartX + swipeThreshold) {
+            // Swipe right, go previous
+            if (currentIndex > (isDesktopView ? desktopStartIndex : 0)) {
+                goToSlide(currentIndex - 1);
+            }
+        }
+    }
   });
-  
-  const progressDots = document.querySelectorAll('.progress-dot');
-  
-  // Function to calculate item width based on window size
-  function calculateItemWidth() {
-      const windowWidth = window.innerWidth;
-      if (windowWidth <= 480) {
-          return 250 + 16; // item width + margin for mobile
-      } else if (windowWidth <= 768) {
-          return 300 + 20; // item width + margin for tablet
-      } else {
-          return 524 + 30; // item width + margin for desktop
-      }
-  }
-  
-  // Initialize item width
-  itemWidth = calculateItemWidth();
-  
-  // Update item width on window resize
-  window.addEventListener('resize', () => {
-      itemWidth = calculateItemWidth();
-      goToSlide(currentIndex);
-  });
-  
-  function updateProgressDots() {
-      progressDots.forEach((dot, index) => {
-          if (index === currentIndex) {
-              dot.classList.add('active');
-          } else {
-              dot.classList.remove('active');
-          }
-      });
-  }
-  
-  function goToSlide(index) {
-      currentIndex = index;
-      const offset = -currentIndex * itemWidth;
-      galleryWrapper.style.transform = `translateX(${offset}px)`;
-      updateProgressDots();
-  }
-  
-  prevButton.addEventListener('click', () => {
-      if (currentIndex > 0) {
-          goToSlide(currentIndex - 1);
-      } else {
-          // Optional: Loop back to the end
-          goToSlide(maxIndex);
-      }
-  });
-  
-  nextButton.addEventListener('click', () => {
-      if (currentIndex < maxIndex) {
-          goToSlide(currentIndex + 1);
-      } else {
-          // Optional: Loop back to the beginning
-          goToSlide(0);
-      }
-  });
-  
-  // Enable horizontal scrolling with mouse wheel
-  galleryWrapper.addEventListener('wheel', (e) => {
-      e.preventDefault();
-      if (e.deltaY > 0) {
-          // Scroll right
-          if (currentIndex < maxIndex) {
-              goToSlide(currentIndex + 1);
-          }
-      } else {
-          // Scroll left
-          if (currentIndex > 0) {
-              goToSlide(currentIndex - 1);
-          }
-      }
-  });
-  
-  // Enable touch scrolling for mobile
-  let touchStartX = 0;
-  let touchEndX = 0;
-  
-  galleryWrapper.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-  });
-  
-  galleryWrapper.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-  });
-  
-  function handleSwipe() {
-      const swipeThreshold = 50;
-      if (touchEndX < touchStartX - swipeThreshold) {
-          // Swipe left, go next
-          if (currentIndex < maxIndex) {
-              goToSlide(currentIndex + 1);
-          }
-      } else if (touchEndX > touchStartX + swipeThreshold) {
-          // Swipe right, go previous
-          if (currentIndex > 0) {
-              goToSlide(currentIndex - 1);
-          }
-      }
-  }
-  
-  // Optional: Auto-scroll functionality
-  /*
-  let autoScrollInterval;
-  
-  function startAutoScroll() {
-      autoScrollInterval = setInterval(() => {
-          if (currentIndex < maxIndex) {
-              goToSlide(currentIndex + 1);
-          } else {
-              goToSlide(0);
-          }
-      }, 5000); // Change slide every 5 seconds
-  }
-  
-  function stopAutoScroll() {
-      clearInterval(autoScrollInterval);
-  }
-  
-  startAutoScroll();
-  
-  const galleryContainer = document.querySelector('.gallery-container');
-  galleryContainer.addEventListener('mouseenter', stopAutoScroll);
-  galleryContainer.addEventListener('mouseleave', startAutoScroll);
-  */
-});
