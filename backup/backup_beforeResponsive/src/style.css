@@ -1,0 +1,30 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jost:ital,wght@0,100..900;1,100..900&display=swap");
+@import "tailwindcss";
+
+@theme {
+  /* --font-roboto: "Roboto", sans-serif; */
+  --font-inter: "Inter", sans-serif;
+  --color-primary: #2663eb; 
+  --color-secondary: #111827; /* footer */
+  --color-background: #f9fafc; 
+  --color-background-header: #f4f5f5;
+  /* --color-text: #3e4957; */
+  --color-text: #6b7280;
+}
+
+.hamburger-line {
+    @apply w-[30px] h-[2px] my-2 block bg-black;
+}
+
+.hamburger-active > span:nth-child(1) {
+    @apply rotate-45;
+}
+
+.hamburger-active > span:nth-child(2) {
+    @apply scale-0;
+}
+
+.hamburger-active > span:nth-child(3) {
+    @apply -rotate-45;
+}
